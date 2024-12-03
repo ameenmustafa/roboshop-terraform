@@ -1,3 +1,14 @@
+data "aws_ami" "example" {
+
+  most_recent      = true
+  name_regex       = "Amazon Linux 2023 AMI"
+  owners           = ["amazon"]
+}
+
+output "ami"{
+    value=aws_ami.example.image_id
+    }
+
 resource "aws_instance" "frontend" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
