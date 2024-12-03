@@ -1,4 +1,8 @@
 
+data "aws_security_group" "allow-all" {
+  name = "allow-all"
+}
+
 resource "aws_instance" "frontend" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
