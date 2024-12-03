@@ -1,13 +1,3 @@
-data "aws_ami" "example" {
-
-  most_recent      = true
-  name_regex       = "Amazon Linux 2023 AMI"
-  owners           = ["amazon"]
-}
-
-output "ami"{
-    value= data.aws_ami.example.image_id
-    }
 
 resource "aws_instance" "frontend" {
   ami           = "ami-0453ec754f44f9a4a"
@@ -16,6 +6,14 @@ resource "aws_instance" "frontend" {
   tags = {
     Name = "frontend"
   }
+}
+
+resource "aws_route53_record" "frontend" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "frontend.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.frontend.private_ip]
 }
 
 resource "aws_instance" "mongodb" {
@@ -27,6 +25,14 @@ resource "aws_instance" "mongodb" {
   }
 }
 
+resource "aws_route53_record" "mongodb" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "mongodb.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.mongodb.private_ip]
+}
+
 resource "aws_instance" "catalogue" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
@@ -34,6 +40,14 @@ resource "aws_instance" "catalogue" {
   tags = {
     Name = "catalogue"
   }
+}
+
+resource "aws_route53_record" "catalogue" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "catalogue.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.catalogue.private_ip]
 }
 
 resource "aws_instance" "redis" {
@@ -45,6 +59,14 @@ resource "aws_instance" "redis" {
   }
 }
 
+resource "aws_route53_record" "redis" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "redis.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.redis.private_ip]
+}
+
 resource "aws_instance" "user" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
@@ -52,6 +74,14 @@ resource "aws_instance" "user" {
   tags = {
     Name = "user"
   }
+}
+
+resource "aws_route53_record" "user" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "user.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.user.private_ip]
 }
 
 resource "aws_instance" "cart" {
@@ -63,6 +93,14 @@ resource "aws_instance" "cart" {
   }
 }
 
+resource "aws_route53_record" "cart" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "cart.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.cart.private_ip]
+}
+
 resource "aws_instance" "mysql" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
@@ -70,6 +108,14 @@ resource "aws_instance" "mysql" {
   tags = {
     Name = "mysql"
   }
+}
+
+resource "aws_route53_record" "mysql" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "mysql.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.mysql.private_ip]
 }
 
 resource "aws_instance" "shipping" {
@@ -81,6 +127,15 @@ resource "aws_instance" "shipping" {
   }
 }
 
+resource "aws_route53_record" "shipping" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "shipping.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.shipping.private_ip]
+}
+
+
 resource "aws_instance" "rabbitmq" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
@@ -88,6 +143,14 @@ resource "aws_instance" "rabbitmq" {
   tags = {
     Name = "rabbitmq"
   }
+}
+
+resource "aws_route53_record" "rabbitmq" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "rabbitmq.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.rabbitmq.private_ip]
 }
 
 resource "aws_instance" "payment" {
@@ -99,6 +162,14 @@ resource "aws_instance" "payment" {
   }
 }
 
+resource "aws_route53_record" "payment" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "payment.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.payment.private_ip]
+}
+
 resource "aws_instance" "dispatch" {
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = "t2.micro"
@@ -106,4 +177,12 @@ resource "aws_instance" "dispatch" {
   tags = {
     Name = "dispatch"
   }
+}
+
+resource "aws_route53_record" "dispatch" {
+  zone_id = Z08867423NOB20RYSKEDB
+  name    = "dispatch.wecandev.xyz"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.dispatch.private_ip]
 }
