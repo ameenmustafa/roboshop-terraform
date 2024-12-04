@@ -11,7 +11,7 @@ variable "components"{
     default = ["frontend","mongodb","catalogue"]
     }
 resource "aws_instance" "frontend" {
-    count = lenght(var.components)
+    count = length(var.components)
   ami           = "ami-0453ec754f44f9a4a"
   instance_type = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
