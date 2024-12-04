@@ -79,5 +79,5 @@ resource "aws_route53_record" "records" {
   name    = "${each.value["name"]}.wecandev.xyz"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.instance[each.value("name")].private_ip]
+  records = [aws_instance.instance[each.value["name"]].private_ip]
 }
