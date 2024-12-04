@@ -16,7 +16,7 @@ resource "aws_instance" "frontend" {
   instance_type = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.allow-all.id]
   tags = {
-    Name = "var.components[count.index]"
+    Name = var.components[count.index]
   }
 }
 
